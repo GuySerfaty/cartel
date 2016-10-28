@@ -1,0 +1,41 @@
+{
+  "name": "skeleton-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "predeploy": "node tasks/deploy_pre.js",
+    "deploy": "node tasks/deploy.js",
+    "postdeploy": "node tasks/deploy_post.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PoobApp/routes-service.git"
+  },
+  "author": "Poob",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PoobApp/routes-service/issues"
+  },
+  "homepage": "https://github.com/PoobApp/routes-service#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "brucedown": "^1.1.1",
+    "express": "^4.14.0",
+    "git-rev": "^0.2.1",
+    "github-flavored-markdown": "^1.0.1",
+    "markdown-it": "^8.0.0",
+    "moment": "^2.15.2",
+    "moment-timezone": "^0.5.7",
+    "mysql": "^2.11.1",
+    "pug": "^2.0.0-beta6",
+    "sequelize": "^3.24.3",
+    "shaeiltajs": "^0.9.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.2"
+  }
+}

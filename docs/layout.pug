@@ -1,0 +1,59 @@
+head
+  link(href='/docs/assets/github-style.css', rel='stylesheet')
+  title=appData.name + " docs : " + pathToRender + " V" + appData.version
+
+  style.
+    #top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #37474F;
+      color: #fff;
+      padding: 2px 10px;
+      box-sizing: border-box;
+    }
+
+    a.app-name {
+      line-height: 45px;
+      font-size: 30px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .markdown-body {
+      margin: 0 auto;
+    }
+
+    .git-data {
+      float:right ;
+      font-size: 13px;
+      text-align: right;
+      color: #ff5722;
+      margin-top: 6px;
+    }
+
+    body {
+      padding-top: 30px;
+      color: #333;
+      font-family:
+        -apple-system, BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol";
+    }
+body
+  #top
+    .git-data
+      div
+        |Git : #{gitData.branch} / #{gitData.short}
+      div
+        |V #{appData.version}
+    a(href="/docs").app-name #{appData.name}
+  .markdown-body
+    test!=test

@@ -1,0 +1,119 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Books Example",
+		"_postman_id": "9ba2b072-cb42-319a-16fe-73a84b0d3396",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Update a book",
+			"request": {
+				"url": "http://localhost:8080/books/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "dor",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "published",
+							"value": "2013",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get a book",
+			"request": {
+				"url": "http://localhost:8080/books/2",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Book",
+			"request": {
+				"url": "http://localhost:8080/books",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "new book",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "published",
+							"value": "1900",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all books",
+			"request": {
+				"url": "http://localhost:8080/books",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a book",
+			"request": {
+				"url": "http://localhost:8080/books/2",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
