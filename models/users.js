@@ -13,7 +13,7 @@ let Users = db.define('Reservation', {
       allowNull: false,
   },
   user_name: {
-      type: Sequelize.INTEGER(11),
+      type: Sequelize.STRING,
       allowNull: false,
   }
 },{
