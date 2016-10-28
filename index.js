@@ -13,7 +13,7 @@ if( app.get('env') === 'development' ) {
 }
 
 /* Routes */
-// app.use('/books', require('./controllers/books_controller'));
+app.use('/users', require('./controllers/users'));
 // app.use('/reservations', require('./controllers/reservations'));
 
 /* Static Files */
