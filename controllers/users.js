@@ -8,4 +8,8 @@ router.get('/',function(req, res) {
   });
 })
 
+router.post('/create',(req, res) => {
+  res.json({addedUserID:models.Users.create(req.query)})
+})
+
 module.exports = router;

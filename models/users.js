@@ -12,7 +12,27 @@ let Users = db.define('Reservation', {
       type: Sequelize.INTEGER(11),
       allowNull: false,
   },
-  user_name: {
+  frist_name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+  },
+  last_name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+  },
+  fb_token: {
+      type: Sequelize.STRING,
+      allowNull: false,
+  },
+  email: {
+      type: Sequelize.STRING,
+      allowNull: false,
+  },
+  birthday: {
+      type: Sequelize.DATE,
+      allowNull: false,
+  },
+  gender: {
       type: Sequelize.STRING,
       allowNull: false,
   }
