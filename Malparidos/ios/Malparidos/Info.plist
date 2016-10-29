@@ -71,6 +71,6 @@
     <string>fbshareextension</string>
   </array>
   <key>NSPhotoLibraryUsageDescription</key>
-  <string>Malparidos needs photos access to work better</string>
+  <string>Malparidos needs photos access to represent your character</string>
 </dict>
 </plist>
