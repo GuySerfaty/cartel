@@ -55,12 +55,12 @@
     <dict>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>fb1143072722448080</string>
+        <string>fb332555560444855</string>
       </array>
     </dict>
   </array>
   <key>FacebookAppID</key>
-  <string>1143072722448080</string>
+  <string>332555560444855</string>
   <key>FacebookDisplayName</key>
   <string>Malparidos</string>
   <key>LSApplicationQueriesSchemes</key>
