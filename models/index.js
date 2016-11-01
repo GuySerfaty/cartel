@@ -1,7 +1,8 @@
 let db = require('../db/maindb')
 let Users = require('./Users')
+let Deals = require('./Deals')
 
-//Users.belongsToMany(Users, {through: 'Usersss'});
+Deals.belongsTo(Users);
 
 db.sync()
 
