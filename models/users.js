@@ -1,7 +1,7 @@
 let Sequelize = require('sequelize');
 let db = require('../db/maindb')
 
-let Users = db.define('Reservation', {
+let Users = db.define('Users', {
   id: {
     type: Sequelize.INTEGER(11),
     allowNull: false,
@@ -35,6 +35,28 @@ let Users = db.define('Reservation', {
   gender: {
       type: Sequelize.STRING,
       allowNull: false,
+  },
+  product_amount: {
+      type: Sequelize.INTEGER(11),
+      allowNull: true,
+      defaultValue: 1000
+  },
+  money: {
+      type: Sequelize.INTEGER(11),
+      allowNull: true,
+      defaultValue: 1000
+  },
+  status: {
+      type: Sequelize.STRING,
+      allowNull: true,
+  },
+  lat: {
+      type: Sequelize.STRING,
+      allowNull: true,
+  },
+  lan: {
+      type: Sequelize.STRING,
+      allowNull: true,
   }
 },{
   tableName: 'Users',
