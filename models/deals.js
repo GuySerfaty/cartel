@@ -8,13 +8,14 @@ let Deals = db.define('Deals', {
     primaryKey: true,
     autoIncrement: true,
   },
-  seller_id: {
-      type: Sequelize.INTEGER(11),
-      allowNull: false,
-  },
   amount: {
       type: Sequelize.INTEGER(11),
       allowNull: false,
+  },
+  state: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      defaultValue: 'active'
   },
   price: {
       type: Sequelize.INTEGER(11),
@@ -22,7 +23,8 @@ let Deals = db.define('Deals', {
   }
 },{
   tableName: 'Deals',
-  freezeTableName: true
+  freezeTableName: true,
+  underscored: true
 })
 
 module.exports = Deals;

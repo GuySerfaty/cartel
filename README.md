@@ -26,6 +26,14 @@ npm install
 
 And **that's it!** Enjoy your new Malparidos local directory
 
+
+Run Environment
+======
+Start SQL server : `mysql.server start`
+
+Start node index.js :`npm run dev`
+
+
 License
 ======
 This library is not yet registered under any license.

@@ -14,6 +14,7 @@ if( app.get('env') === 'development' ) {
 
 /* Routes */
 app.use('/users', require('./controllers/users'));
+app.use('/deals', require('./controllers/deals'));
 // app.use('/reservations', require('./controllers/reservations'));
 
 /* Static Files */
