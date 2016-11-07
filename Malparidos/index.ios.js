@@ -1,22 +1,17 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Malparidos Project
+ * The first geo-based drug dealing app
+ *
+ * This is the iOS version start file
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View
-    } from 'react-native';
+'use strict';
 
-const FBSDK = require('react-native-fbsdk');
-const {
-    LoginButton,
-    AccessToken
-    } = FBSDK;
+import React, { Component } from 'react';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
+import db from './services/malparidos-db';
 
 export default class Malparidos extends Component {
 
@@ -32,11 +27,8 @@ export default class Malparidos extends Component {
                     <LoginButton
                         publishPermissions={["publish_actions"]}
                         onLoginFinished={
-                            //(error, result) => {
-                            //    console.log('success: ', result);
-                            //    console.log('found error: ', error);
-                            //}
                             (error, result) => {
+                                var thePost = db.post();
                                 if (error) {
                                     alert("login has error: " + result.error);
                                 } else if (result.isCancelled) {
@@ -45,13 +37,14 @@ export default class Malparidos extends Component {
                                     AccessToken.getCurrentAccessToken().then(
                                         (data) => {
                                             console.log('login success:', data);
+                                            console.log('post: ', thePost);
                                             //alert(data.accessToken.toString())
                                         }
                                     )
                                 }
                             }
                             }
-                        onLogoutFinished={() => alert("logout.")}/>
+                        onLogoutFinished={() => console.log("logout.")}/>
                 </View>
 
             </View>
@@ -77,7 +70,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
-    },
+    }
 });
 
 AppRegistry.registerComponent('Malparidos', () => Malparidos);

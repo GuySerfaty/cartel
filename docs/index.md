@@ -1,84 +1,31 @@
-# Node Service skeleton
-`\*** Temp file -  Should be replaced before prodacaion ***\`
+Malparidos
+======
 
-Please explain the porpuse of the app in this file, all API methods and q&a if needed.
-I will add example api in the bottom that works in real life so everyone will understand this project guidelines.
+This is a geo-location based library used for Malparidos, a drug dealing simulation app built in React Native and works on both **iOS** and **Android**.
+[For more information](https://www.malparidos.com/")
 
-You can add more docs by adding `.md` files in docs folder and link to them by [link](/docs/madeby).
-The name and settings are taken from git and `package.json` file.
+Installation
+======
 
-### Things that you might want to know before start with your project:
-* [How To Install Guide (local)](/docs/install)
-* [How to use tasks (local)](/docs/tasks)
-* [ES6 Guide lines](/docs/tasks)
-* [Who wrote `HOW + Mehow`](/docs/tasks)?
+To install the environment you would need to have 3 things installed:
 
-## Example API
+* Node : `brew install node`
+* MySQL: `brew install mysql`
+* Watchman: `brew install watchman`
 
-You can open an [postman](https://www.google.co.il/search?q=postman) collection file from [here](/docs/assets/postman_collection) to test this example.
-
-### books#get
-Retrive all books from db with basic data.
-
-Response :
+Now install React Native CLI to build iOS and Android apps:
 ```
-[
-  {
-    "id": 1,
-    "name": "Harry Poter"
-  },
-  {
-    "id": 2,
-    "name": "Lord of the rings"
-  },
-  {
-    "id": 3,
-    "name": "Sherlock Holmes"
-  },
-  {
-    "id": 4,
-    "name": "Into the wild"
-  }
-]
+npm install -g react-native-cli
 ```
 
-### books#post
-Add a book with data from request.
-
-Response :
+Then navigate to your directory and install environment:
 ```
-{
-  "addedBookID": 4
-}
+cd ~/cartel
+npm install
 ```
 
-### books/:id#get
-Get data from specific book.
+And **that's it!** Enjoy your new Malparidos local directory
 
-Response :
-```
-{
-  "id": 2,
-  "name": "Lord of the rings",
-  "published": 1993,
-  "timeSincePublished": "23 years ago"
-}
-```
-### books/:id#delete
-Get data from specific book.
-
-Response :
-```
-{
-  "deleted": true
-}
-```
-### books/:id#put
-Update a book with id = :id.
-
-Response :
-```
-{
-  "updated": 1
-}
-```
+License
+======
+This library is not yet registered under any license.
