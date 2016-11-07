@@ -32,6 +32,10 @@ export default class Malparidos extends Component {
                     <LoginButton
                         publishPermissions={["publish_actions"]}
                         onLoginFinished={
+                            //(error, result) => {
+                            //    console.log('success: ', result);
+                            //    console.log('found error: ', error);
+                            //}
                             (error, result) => {
                                 if (error) {
                                     alert("login has error: " + result.error);
@@ -40,7 +44,8 @@ export default class Malparidos extends Component {
                                 } else {
                                     AccessToken.getCurrentAccessToken().then(
                                         (data) => {
-                                            alert(data.accessToken.toString())
+                                            console.log('login success:', data);
+                                            //alert(data.accessToken.toString())
                                         }
                                     )
                                 }
