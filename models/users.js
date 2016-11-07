@@ -12,7 +12,7 @@ let Users = db.define('Users', {
       type: Sequelize.INTEGER(11),
       allowNull: false,
   },
-  frist_name: {
+  first_name: {
       type: Sequelize.STRING,
       allowNull: false,
   },

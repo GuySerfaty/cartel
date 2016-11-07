@@ -3,23 +3,34 @@
  * The first geo-based drug dealing app
  *
  * This is the environment configuration file
+ *
+ * @providesModule environment
  * @flow
  */
 
 'use strict';
 
-const environment = 'dev';
+let envPlatform = 'dev';
 
-const environmentSettings = {
-    dev : {
+let envSettings = {
+    'dev' : {
         'BASE_URL': 'http://localhost:8080'
     },
-    staging : {
+    'staging' : {
         'BASE_URL': 'http://api.cartelapp.com'
     },
-    prod : {
-        'BASE_URL': 'http://api.malparidos.com'
+    'prod' : {
+        'BASE_URL': 'https://api.malparidos.com'
     }
 };
 
-const app = environmentSettings[environment];
+let baseUrl = envSettings[envPlatform].BASE_URL;
+
+const API = {
+    'createUserURL' : baseUrl + '/users/create',
+    'getActiveDeals': baseUrl + '/deals',
+    'createDealURL' : baseUrl + '/deals/create',
+    'getUserDeal'   : baseUrl + '/deals/seller'
+};
+
+export default API;
