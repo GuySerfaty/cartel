@@ -11,6 +11,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
+import graph from './services/graph';
 import db from './services/db';
 
 export default class Malparidos extends Component {
@@ -36,7 +37,9 @@ export default class Malparidos extends Component {
                                     AccessToken.getCurrentAccessToken().then(
                                         (data) => {
                                             console.log('login success:', data);
-                                            db.createUser({fb_token: '123'}).then((response) => console.log('response is: ', response));;
+                                            let accessToken = data.accessToken.toString();
+                                            graph.getUserInfo(accessToken);
+                                            //db.createUser({fb_token: '123'}).then((response) => console.log('response is: ', response));
                                             //alert(data.accessToken.toString())
                                         }
                                     )
