@@ -26,11 +26,11 @@ let Users = db.define('Users', {
   },
   email: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
   },
   birthday: {
       type: Sequelize.DATE,
-      allowNull: false,
+      allowNull: true,
   },
   gender: {
       type: Sequelize.STRING,

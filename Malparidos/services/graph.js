@@ -12,8 +12,9 @@
 
 import FBSDK, {  AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 import API from 'environment';
+import db from 'db';
 
-let _responseInfoCallback = (error, result) => {
+const _responseInfoCallback = (error, result) => {
     if (error) {
         console.log('Error fetching data: ' , error);
     } else {
@@ -23,9 +24,9 @@ let _responseInfoCallback = (error, result) => {
 
 const profileRequestParams = {
     fields: {
-        string: 'id, name, email, first_name, last_name, gender'
+        string: 'id, email, first_name, last_name, gender, birthday'
     }
-}
+};
 
 const profileRequestConfig = (accessToken, params) => {
     let config = {
@@ -33,21 +34,31 @@ const profileRequestConfig = (accessToken, params) => {
         version: 'v2.5',
         parameters: params,
         accessToken: accessToken.toString()
-    }
+    };
     return config;
-}
+};
+
+let userAccessToken;
 
 const graph = {
-  'getUserInfo': (accessToken, callback) => {
-      console.log('Requesting new data from Graph API', profileRequestConfig(accessToken, profileRequestParams));
-      let infoRequest = new GraphRequest(
-          '/me',
-          profileRequestConfig(accessToken, profileRequestParams),
-          callback || _responseInfoCallback
-      );
-      new GraphRequestManager().addRequest(infoRequest).start();
-  }
+    'getUserInfo': (accessToken, callback) => {
+        console.log('Requesting new data from Graph API', profileRequestConfig(accessToken, profileRequestParams));
+        userAccessToken = accessToken;
+        let infoRequest = new GraphRequest(
+            '/me',
+            profileRequestConfig(accessToken, profileRequestParams),
+            callback || _responseInfoCallback
+        );
+        new GraphRequestManager().addRequest(infoRequest).start();
+    },
+    'graphResponseToDB' : (error, result) => {
+        if (error) {
+            console.log('Error fetching data: ' , error);
+        } else {
+            //console.log('USER ACCESS TOKEN:', userAccessToken, result);
+            db.createUser(result, userAccessToken);
+        }
+    }
 };
 
 export default graph;
-

@@ -5,6 +5,7 @@
  * This is the DB wrapper service containing:
  * API calls
  *
+ * @providesModule db
  * @flow
  */
 
@@ -15,7 +16,8 @@ import { AppRegistry } from 'react-native';
 import API from 'environment';
 
 const db = {
-  'createUser' : (params) => {
+  'createUser' : (params, accessToken) => {
+      console.log('creating user', params, accessToken);
       return fetch(API.createUserURL, {
           method: 'POST',
           headers: {
@@ -23,8 +25,8 @@ const db = {
               'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-              fb_id: params.userID,
-              fb_token: params.accessToken,
+              fb_id: parseInt(params.id),
+              fb_token: accessToken,
               first_name: params.first_name ,
               last_name: params.last_name,
               email: params.email,
