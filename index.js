@@ -5,7 +5,7 @@ let bodyParser = require('body-parser')
 
 /* Settings */
 app.set('view engine', 'pug')
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.json())
 
 if( app.get('env') === 'development' ) {
   /* Development settings */
