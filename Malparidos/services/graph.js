@@ -55,7 +55,6 @@ const graph = {
         if (error) {
             console.log('Error fetching data: ' , error);
         } else {
-            //console.log('USER ACCESS TOKEN:', userAccessToken, result);
             db.createUser(result, userAccessToken);
         }
     }
