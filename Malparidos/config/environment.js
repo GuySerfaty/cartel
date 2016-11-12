@@ -27,10 +27,22 @@ let envSettings = {
 let baseUrl = envSettings[envPlatform].BASE_URL;
 
 const API = {
-    'createUserURL' : baseUrl + '/users/create',
-    'getActiveDeals': baseUrl + '/deals',
-    'createDealURL' : baseUrl + '/deals/create',
-    'getUserDeal'   : baseUrl + '/deals/seller'
+    'createUser' : {
+        url: baseUrl + '/users/create',
+        method: 'POST'
+    },
+    'getActiveDeals': {
+        url: baseUrl + '/deals',
+        method: 'GET'
+    },
+    'createDeal' : {
+        url: baseUrl + '/deals/create',
+        method: 'POST'
+    },
+    'getUserDeal' : {
+        url: baseUrl + '/deals/seller',
+        method: 'GET'
+    }
 };
 
 export default API;

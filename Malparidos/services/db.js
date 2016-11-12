@@ -18,7 +18,7 @@ import API from 'environment';
 const db = {
   'createUser' : (params, accessToken) => {
       console.log('creating user', params, accessToken);
-      return fetch(API.createUserURL, {
+      return fetch(API.createUser.url, {
           method: 'POST',
           headers: {
               'Accept': 'application/json',
