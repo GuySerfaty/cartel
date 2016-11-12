@@ -13,6 +13,7 @@ import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
 import graph from 'graph';
 import db from 'db';
+import BackgroundVideo from './components/backgroundVideo';
 
 const _XHR = GLOBAL.originalXMLHttpRequest ?
     GLOBAL.originalXMLHttpRequest :
@@ -27,11 +28,14 @@ export default class Malparidos extends Component {
         return (
             <View style={styles.container}>
 
+                <BackgroundVideo />
+
                 <Text style={styles.welcome}>
                     Welcome to Malparrrrridos!
                 </Text>
 
                 <View>
+
                     <LoginButton
                         publishPermissions={["publish_actions"]}
                         onLoginFinished={
@@ -61,22 +65,30 @@ export default class Malparidos extends Component {
 
 
 
+
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        //backgroundColor: '#F5FCFF',
     },
     welcome: {
-        fontSize: 20,
+        fontSize: 24,
         textAlign: 'center',
         margin: 10,
+        color: '#ffffff',
+        fontWeight: 'bold',
+        backgroundColor: 'transparent'
     },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
+    backgroundVideo: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
     }
 });
 
