@@ -36,11 +36,12 @@ Todo List
 
 ## Server:
 
-* Environment setup
+* Environment setup - Done
 * New developer station
-* Unique fb_id db (only update)
+* Unique fb_id db (only update) - Done
 * Blue print
 * Error handling - API
+* Remove poob from code
 
 ## Client:
 
