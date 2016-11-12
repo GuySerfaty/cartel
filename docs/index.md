@@ -46,6 +46,7 @@ Todo List
 
 ## Server:
 
+
 * Environment setup - change environmental variable (dev/prod/staging)
 * New developer station - npm install should do everything listed above here
 * Unique fb_id db (only update)
@@ -53,6 +54,7 @@ Todo List
 * Error handling - API
 * Server session best practice implementation
 * API for location samples - /user/:userId/location/get , /user/:userId/location/set , /user/location/set, /user/location/get,
+
 
 ## Client:
 
