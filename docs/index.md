@@ -51,6 +51,8 @@ Todo List
 * Unique fb_id db (only update)
 * Blue print
 * Error handling - API
+* Server session best practice implementation
+* API for location samples - /user/:userId/location/get , /user/:userId/location/set , /user/location/set, /user/location/get,
 
 ## Client:
 
@@ -58,3 +60,4 @@ Todo List
 * Profile page
 * Check if user is logged-in, route him to homescreen
 * Location
+* Start Android development
