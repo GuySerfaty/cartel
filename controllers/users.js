@@ -10,7 +10,9 @@ router.get('/',function(req, res) {
 
 router.post('/create',(req, res) => {
   console.log("req::",req.body)
-  res.json({addedUserID:models.Users.create(req.body)})
+  models.Users.create(req.body).then( (data) => {
+    res.json({addedUserID:data})
+  })
 })
 
 module.exports = router;

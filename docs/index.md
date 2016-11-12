@@ -29,3 +29,22 @@ And **that's it!** Enjoy your new Malparidos local directory
 License
 ======
 This library is not yet registered under any license.
+
+
+Todo List
+======
+
+## Server:
+
+* Environment setup
+* New developer station
+* Unique fb_id db (only update)
+* Blue print
+* Error handling - API
+
+## Client:
+
+* Api improvements
+* Profile page
+* Check if user is logged-in, route him to homescreen
+* Location
