@@ -9,8 +9,10 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import { Alert, AppRegistry, StyleSheet, Text, View } from 'react-native';
 import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
+import Permissions from 'react-native-permissions';
+
 import graph from 'graph';
 import db from 'db';
 import BackgroundVideo from './components/backgroundVideo';
@@ -23,6 +25,55 @@ XMLHttpRequest = _XHR;
 
 
 export default class Malparidos extends Component {
+
+    _requestPermission() {
+        Permissions.requestPermission('photo')
+            .then(response => {
+                //returns once the user has chosen to 'allow' or to 'not allow' access
+                //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+                this.setState({ photoPermission: response })
+            });
+    }
+
+    _alertForPhotosPermission() {
+        Alert.alert(
+            'Can we access your geolocation?',
+            'We need this access to make the game awesome!',
+            [
+                {text: 'Nope', onPress: () => console.log('permission denied'), style: 'cancel'},
+                this.state.geolocationPermission == 'undetermined'?
+                {text: 'OK', onPress: this._requestPermission.bind(this)}
+                    : {text: 'Settings', onPress: Permissions.openSettings}
+            ]
+        )
+    }
+
+    state = {
+        initialPosition: 'unknown',
+        lastPosition: 'unknown'
+    };
+
+    wtachID: ?number = null;
+
+    componentDidMount() {
+        this._alertForPhotosPermission();
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                var initialPosition = JSON.stringify(position);
+                this.setState({initialPosition});
+            },
+            (error) => alert(JSON.stringify(error)),
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );
+        this.watchID = navigator.geolocation.watchPosition((position) => {
+            var lastPosition = JSON.stringify(position);
+            this.setState({lastPosition});
+        });
+    }
+
+    componentWillUnmount() {
+        navigator.geolocation.clearWatch(this.watchID);
+    }
 
     render() {
         return (
@@ -49,7 +100,16 @@ export default class Malparidos extends Component {
                                         (data) => {
                                             console.log('login success:', data);
                                             let accessToken = data.accessToken.toString();
-                                            graph.getUserInfo(accessToken, graph.graphResponseToDB);
+                                            graph.getUserInfo(accessToken, graph.graphResponseToDB).then(
+                                                (success, error) => {
+                                                    if (error) {
+                                                        console.log('error :(', error);
+                                                    }
+                                                    else {
+
+                                                    }
+                                                }
+                                            );
                                         }
                                     )
                                 }

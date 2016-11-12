@@ -39,6 +39,8 @@ const profileRequestConfig = (accessToken, params) => {
 };
 
 let userAccessToken;
+let graphPromise;
+let graphPromiseHandler = {};
 
 const graph = {
     'getUserInfo': (accessToken, callback) => {
@@ -49,13 +51,24 @@ const graph = {
             profileRequestConfig(accessToken, profileRequestParams),
             callback || _responseInfoCallback
         );
-        new GraphRequestManager().addRequest(infoRequest).start();
+        graphPromise =  new Promise ( (resolve, reject) => {
+            graphPromiseHandler.resolve = resolve;
+            graphPromiseHandler.reject = reject;
+            new GraphRequestManager().addRequest(infoRequest).start();
+        } );
+
+        return graphPromise;
+
     },
     'graphResponseToDB' : (error, result) => {
         if (error) {
             console.log('Error fetching data: ' , error);
+            graphPromiseHandler.reject(error);
         } else {
-            db.createUser(result, userAccessToken);
+            db.createUser(result, userAccessToken).then( (data) => {
+                console.log('passing graph response to db service', data);
+                graphPromiseHandler.resolve(data);
+            });
         }
     }
 };

@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1C3E6028BC8245AC8A4595CF /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1C0F0094864226BB4E8DCD /* libRCTVideo.a */; };
 		2334B874C7DC420F9DE0A7EF /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E98CE083734F82AC3F2790 /* libRCTFBSDK.a */; };
+		4A2FDFB8C37C466DBA92397B /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B8E5214EC44CFE97DD3618 /* libReactNativePermissions.a */; };
 		507EAF6E1DD7237C009DD8D9 /* cartel-background-video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 507EAF6D1DD7237C009DD8D9 /* cartel-background-video.mp4 */; };
 		50F312541DC94EDF0019EC27 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F312501DC94EDF0019EC27 /* Bolts.framework */; };
 		50F312551DC94EDF0019EC27 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F312511DC94EDF0019EC27 /* FBSDKCoreKit.framework */; };
@@ -102,6 +103,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTVideo;
+		};
+		507EAF911DD78714009DD8D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4127EA66600F4B489D984B2A /* ReactNativePermissions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
+			remoteInfo = ReactNativePermissions;
 		};
 		50A7217F1DC493B1001FFCD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -197,6 +205,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Malparidos/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Malparidos/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		4127EA66600F4B489D984B2A /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
 		4B1C0F0094864226BB4E8DCD /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
 		507EAF6D1DD7237C009DD8D9 /* cartel-background-video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "cartel-background-video.mp4"; path = "../assets/cartel-background-video.mp4"; sourceTree = "<group>"; };
 		50A2C1A71DCF2D55004AAC55 /* Malparidos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Malparidos.entitlements; path = Malparidos/Malparidos.entitlements; sourceTree = "<group>"; };
@@ -206,6 +215,7 @@
 		50F312531DC94EDF0019EC27 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Frameworks/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		E0B8E5214EC44CFE97DD3618 /* libReactNativePermissions.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativePermissions.a; sourceTree = "<group>"; };
 		E1E98CE083734F82AC3F2790 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,6 +248,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				2334B874C7DC420F9DE0A7EF /* libRCTFBSDK.a in Frameworks */,
 				1C3E6028BC8245AC8A4595CF /* libRCTVideo.a in Frameworks */,
+				4A2FDFB8C37C466DBA92397B /* libReactNativePermissions.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +364,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		507EAF7B1DD78714009DD8D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				507EAF921DD78714009DD8D9 /* libReactNativePermissions.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		50A721B61DC4D31F001FFCD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +415,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				063E1CDBCCC34821BB6DCF9A /* RCTFBSDK.xcodeproj */,
 				055A898A60164CBA9E922ABB /* RCTVideo.xcodeproj */,
+				4127EA66600F4B489D984B2A /* ReactNativePermissions.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -554,6 +574,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = 507EAF7B1DD78714009DD8D9 /* Products */;
+					ProjectRef = 4127EA66600F4B489D984B2A /* ReactNativePermissions.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -625,6 +649,13 @@
 			fileType = archive.ar;
 			path = libRCTVideo.a;
 			remoteRef = 507EAF611DD71ED0009DD8D9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		507EAF921DD78714009DD8D9 /* libReactNativePermissions.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativePermissions.a;
+			remoteRef = 507EAF911DD78714009DD8D9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		50A721801DC493B1001FFCD7 /* libRCTImage-tvOS.a */ = {
@@ -791,6 +822,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Malparidos.app/Malparidos";
@@ -807,6 +839,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -830,6 +863,7 @@
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
+					"$(SRCROOT)/../node_modules/react-native-permissions/**",
 				);
 				INFOPLIST_FILE = Malparidos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -862,6 +896,7 @@
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
+					"$(SRCROOT)/../node_modules/react-native-permissions/**",
 				);
 				INFOPLIST_FILE = Malparidos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -920,6 +955,7 @@
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
+					"$(SRCROOT)/../node_modules/react-native-permissions/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -963,6 +999,7 @@
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-video",
+					"$(SRCROOT)/../node_modules/react-native-permissions/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
