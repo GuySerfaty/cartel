@@ -47,7 +47,7 @@ Todo List
 ## Server:
 
 * Environment setup - change environmental variable (dev/prod/staging)
-* New developer station - npm install should install rnp,
+* New developer station - npm install should do everything listed above here
 * Unique fb_id db (only update)
 * Blue print
 * Error handling - API
