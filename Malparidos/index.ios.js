@@ -37,7 +37,7 @@ export default class Malparidos extends Component {
                 <View>
 
                     <LoginButton
-                        publishPermissions={["publish_actions"]}
+                        readPermissions={['email', 'public_profile', 'user_birthday']}
                         onLoginFinished={
                             (error, result) => {
                                 if (error) {
