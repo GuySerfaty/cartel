@@ -9,7 +9,7 @@ let Users = db.define('Users', {
     autoIncrement: true,
   },
   fb_id: {
-      type: Sequelize.INTEGER(11),
+      type: Sequelize.STRING,
       allowNull: false,
   },
   first_name: {

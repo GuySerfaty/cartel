@@ -25,7 +25,7 @@ const db = {
               'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-              fb_id: parseInt(params.id),
+              fb_id: params.id,
               fb_token: accessToken,
               first_name: params.first_name ,
               last_name: params.last_name,
