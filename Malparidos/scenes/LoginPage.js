@@ -8,28 +8,17 @@
 
 'use strict';
 
-// Libraries
 import React, { Component } from 'react';
 import { Alert, AppRegistry, Navigator, StyleSheet, Text, View } from 'react-native';
 import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
 import Permissions from 'react-native-permissions';
 
-// Services
 import graph from 'graph';
 import db from 'db';
-import BackgroundVideo from './components/backgroundVideo';
-
-// Scenes
-import LoginPage from './scenes/LoginPage';
-
-const _XHR = GLOBAL.originalXMLHttpRequest ?
-    GLOBAL.originalXMLHttpRequest :
-    GLOBAL.XMLHttpRequest;
-
-XMLHttpRequest = _XHR;
+import BackgroundVideo from 'background-video';
 
 
-export default class Malparidos extends Component {
+export default class LoginPage extends Component {
 
     _requestGelocationPermission() {
         Permissions.requestPermission('geolocation')
@@ -161,4 +150,4 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('Malparidos', () => Malparidos);
+AppRegistry.registerComponent('LoginPage', () => LoginPage);

@@ -20,8 +20,7 @@ import API from 'environment';
 let newAccessToken;
 AccessToken.getCurrentAccessToken().then((accessToken)  => {newAccessToken = accessToken;});
 
-const APIServerCall = (url, method, headers, bodyParams) => {
-    let body = bodyParams;
+const APIServerCall = (url, method, headers, body) => {
     return fetch(
         url,
         {
@@ -32,7 +31,8 @@ const APIServerCall = (url, method, headers, bodyParams) => {
         (response, error) => {
             if (error) {
                 console.log(error);
-                return error;
+                let errorMessage = "Could not retrieve data from server";
+                return errorMessage;
             }
             else {
                 console.log(response);
@@ -51,7 +51,7 @@ const db = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
-        let bodyParams = JSON.stringify({
+        let body = JSON.stringify({
             fb_id: params.id,
             fb_token: accessToken,
             first_name: params.first_name ,
@@ -60,7 +60,7 @@ const db = {
             birthday : params.birthday,
             gender : params.gender
         });
-        return APIServerCall(url, method, headers, bodyParams);
+        return APIServerCall(url, method, headers, body);
     }
 };
 

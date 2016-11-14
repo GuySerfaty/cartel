@@ -58,7 +58,7 @@ Todo List
 
 ## Client:
 
-* API improvements
+* API improvements - Done.
 * Profile page
 * Check if user is logged-in, route him to homescreen
 * Location
