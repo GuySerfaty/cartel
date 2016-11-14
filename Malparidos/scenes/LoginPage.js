@@ -2,7 +2,10 @@
  * Malparidos Project
  * The first geo-based drug dealing app
  *
- * This is the iOS version start file
+ * This is the login page using Facebook SDK
+ * Should lead to Profile page normally
+ * or Permissions Page if permissions are not satisfied
+ *
  * @flow
  */
 
@@ -76,8 +79,10 @@ export default class LoginPage extends Component {
                                 } else {
                                     AccessToken.getCurrentAccessToken().then(
                                         (data) => {
+
                                             console.log('login success:', data);
                                             let accessToken = data.accessToken.toString();
+
                                             graph.getUserInfo(accessToken, graph.graphResponseToDB).then(
                                                 (success, error) => {
 

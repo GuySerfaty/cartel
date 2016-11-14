@@ -2,7 +2,9 @@
  * Malparidos Project
  * The first geo-based drug dealing app
  *
- * This is the iOS version start file
+ * This is the permissions fallback page to gain access to the following permissions:
+ * Location permission
+ *
  * @flow
  */
 
@@ -10,15 +12,10 @@
 
 import React, { Component } from 'react';
 import { Alert, AppRegistry, Navigator, StyleSheet, Text, View } from 'react-native';
-import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
 import Permissions from 'react-native-permissions';
 
-import graph from 'graph';
-import db from 'db';
-import BackgroundVideo from 'background-video';
 
-
-export default class LoginPage extends Component {
+export default class PermissionsPage extends Component {
 
     _requestGelocationPermission() {
         Permissions.requestPermission('geolocation')
@@ -150,4 +147,4 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('LoginPage', () => LoginPage);
+AppRegistry.registerComponent('PermissionsPage', () => PermissionsPage);

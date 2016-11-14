@@ -2,7 +2,10 @@
  * Malparidos Project
  * The first geo-based drug dealing app
  *
- * This is the iOS version start file
+ * This is the very default Splash Screen page
+ * Should appear on each app opening and disappear when data is loaded
+ * and the app is ready to perform
+ *
  * @flow
  */
 
