@@ -20,10 +20,34 @@ import BackgroundVideo from 'background-video';
 
 export default class LoginPage extends Component {
 
+    _requestGelocationPermission() {
+        Permissions.requestPermission('geolocation')
+            .then(response => {
+                //returns once the user has chosen to 'allow' or to 'not allow' access
+                //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+                this.setState({ geolocationPermission: response })
+            });
+    }
+
+    _alertForGeolocationPermission() {
+        Alert.alert(
+            'Can we access your geolocation?',
+            'We need this access to make the game awesome!',
+            [
+                {text: 'Nope', onPress: () => console.log('permission denied'), style: 'cancel'},
+                this.state.geolocationPermission == 'undetermined'?
+                {text: 'OK', onPress: this._requestGelocationPermission.bind(this)}
+                    : {text: 'Settings', onPress: Permissions.openSettings}
+            ]
+        )
+    }
 
     state = {
-        initialPosition: 'unknown'
+        initialPosition: 'unknown',
+        lastPosition: 'unknown'
     };
+
+    watchID: ?number = null;
 
     componentDidMount() {
 
@@ -34,9 +58,18 @@ export default class LoginPage extends Component {
             },
             (error) => {
                 console.log(error);
+                this._alertForGeolocationPermission();
             },
             {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
         );
+        this.watchID = navigator.geolocation.watchPosition((position) => {
+            var lastPosition = JSON.stringify(position);
+            this.setState({lastPosition});
+        });
+    }
+
+    componentWillUnmount() {
+        navigator.geolocation.clearWatch(this.watchID);
     }
 
     render() {
@@ -57,22 +90,9 @@ export default class LoginPage extends Component {
                         onLoginFinished={
                             (error, result) => {
                                 if (error) {
-
-                                    Alert.alert(
-                                        'Sorry!',
-                                        'Something went wrong, please try again later.',
-                                        [{text:'OK'}]
-                                    );
-                                    console.log("login has error: " + result.error);
-
+                                    alert("login has error: " + result.error);
                                 } else if (result.isCancelled) {
-
-                                    Alert.alert(
-                                        'Facebook login was cancelled!',
-                                        'Please try logging in again.',
-                                        [{text:'OK'}]
-                                    );
-
+                                    alert("login is cancelled.");
                                 } else {
                                     AccessToken.getCurrentAccessToken().then(
                                         (data) => {
@@ -80,13 +100,15 @@ export default class LoginPage extends Component {
                                             let accessToken = data.accessToken.toString();
                                             graph.getUserInfo(accessToken, graph.graphResponseToDB).then(
                                                 (success, error) => {
-
                                                     if (error) {
-                                                        console.log('error in graph.getUserInfo :: ', error);
+                                                        console.log('error :(', error);
                                                     }
-
                                                     else {
-                                                        console.log('Login was successful.', success);
+                                                        console.log('success creating new user');
+                                                        try {
+                                                        } catch (error) {
+                                                            console.log('Error storing AccessToken', error);
+                                                        }
                                                     }
                                                 }
                                             );
