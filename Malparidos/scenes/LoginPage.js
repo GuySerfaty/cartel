@@ -32,8 +32,9 @@ export default class LoginPage extends Component {
 
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                var initialPosition = JSON.stringify(position);
+                var initialPosition = position.coords;
                 this.setState({initialPosition});
+                console.log('Got user location: ', this.state, position);
             },
             (error) => {
                 console.log(error);
@@ -83,7 +84,7 @@ export default class LoginPage extends Component {
                                             console.log('login success:', data);
                                             let accessToken = data.accessToken.toString();
 
-                                            graph.getUserInfo(accessToken, graph.graphResponseToDB).then(
+                                            graph.getUserInfo(accessToken, this.state.initialPosition, graph.graphResponseToDB).then(
                                                 (success, error) => {
 
                                                     if (error) {
@@ -113,8 +114,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        //backgroundColor: '#F5FCFF',
+        alignItems: 'center'
     },
     welcome: {
         fontSize: 24,

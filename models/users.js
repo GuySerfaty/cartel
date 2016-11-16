@@ -51,11 +51,11 @@ let Users = db.define('Users', {
       type: Sequelize.STRING,
       allowNull: true,
   },
-  lat: {
+  latitude: {
       type: Sequelize.STRING,
       allowNull: true,
   },
-  lan: {
+  longitude: {
       type: Sequelize.STRING,
       allowNull: true,
   }

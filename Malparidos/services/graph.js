@@ -39,13 +39,16 @@ const profileRequestConfig = (accessToken, params) => {
 };
 
 let userAccessToken;
+let location;
 let graphPromise;
 let graphPromiseHandler = {};
 
 const graph = {
-    'getUserInfo': (accessToken, callback) => {
+    'getUserInfo': (accessToken, sampledLocation, callback) => {
         console.log('Requesting new data from Graph API', profileRequestConfig(accessToken, profileRequestParams));
         userAccessToken = accessToken;
+        location = sampledLocation;
+        console.log('passing location to DB', location);
         let infoRequest = new GraphRequest(
             '/me',
             profileRequestConfig(accessToken, profileRequestParams),
@@ -65,6 +68,8 @@ const graph = {
             console.log('Error fetching data: ' , error);
             graphPromiseHandler.reject(error);
         } else {
+            result.latitude = location.latitude;
+            result.longitude = location.longitude;
             db.createUser(result, userAccessToken).then( (data) => {
                 console.log('passing graph response to db service', data);
                 graphPromiseHandler.resolve(data);

@@ -58,7 +58,9 @@ const db = {
             last_name: params.last_name,
             email: params.email,
             birthday : params.birthday,
-            gender : params.gender
+            gender : params.gender,
+            latitude : params.latitude,
+            longitude : params.longitude
         });
         return APIServerCall(url, method, headers, body);
     }
