@@ -1,5 +1,4 @@
-let express = require('express')
-let router = express.Router();
+let router = require('./index');
 let models = require('../models')
 let dateHelper = require('../helpers/date_helper')
 
