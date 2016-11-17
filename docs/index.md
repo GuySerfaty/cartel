@@ -47,9 +47,9 @@ Todo List
 ## Server:
 
 
-* Environment setup - change environmental variable (dev/prod/staging)
+* Environment setup - change environmental variable (dev/prod/staging) - Done
 * New developer station - npm install should do everything listed above here
-* Unique fb_id db (only update)
+* Unique fb_id db (only update) - Done
 * Blue print
 * Error handling - API
 * Server session best practice implementation
