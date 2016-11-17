@@ -23,7 +23,6 @@ import BackgroundVideo from 'background-video';
 
 export default class LoginPage extends Component {
 
-
     state = {
         initialPosition: 'unknown'
     };
@@ -44,6 +43,14 @@ export default class LoginPage extends Component {
     }
 
     render() {
+        return (
+            <Navigator
+                renderScene = {this.renderScene.bind(this)}
+            />
+        )
+    }
+
+    renderScene() {
         return (
 
             <View style={styles.container}>
@@ -93,6 +100,7 @@ export default class LoginPage extends Component {
 
                                                     else {
                                                         console.log('Login was successful.', success);
+                                                        this.goToNext();
                                                     }
                                                 }
                                             );
@@ -106,6 +114,13 @@ export default class LoginPage extends Component {
 
             </View>
         );
+    }
+
+    goToNext() {
+        this.props.navigator.push({
+            id: 'PermissionsPage',
+            name: 'Permissions Page'
+        });
     }
 }
 

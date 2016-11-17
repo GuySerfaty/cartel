@@ -63,6 +63,6 @@ let Users = db.define('Users', {
   tableName: 'Users',
   freezeTableName: true,
   underscored: true
-})
+});
 
 module.exports = Users;

@@ -16,7 +16,6 @@ import { AppRegistry } from 'react-native';
 import FBSDK, { AccessToken } from 'react-native-fbsdk';
 import API from 'environment';
 
-//let currentAccessToken = getAccessTokenFromCache();
 let newAccessToken;
 AccessToken.getCurrentAccessToken().then((accessToken)  => {newAccessToken = accessToken;});
 

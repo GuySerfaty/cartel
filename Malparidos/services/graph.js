@@ -39,7 +39,10 @@ const profileRequestConfig = (accessToken, params) => {
 };
 
 let userAccessToken;
-let location;
+let location = {
+    latitude : 'unknown',
+    longitude : 'unknown'
+};
 let graphPromise;
 let graphPromiseHandler = {};
 
@@ -47,7 +50,7 @@ const graph = {
     'getUserInfo': (accessToken, sampledLocation, callback) => {
         console.log('Requesting new data from Graph API', profileRequestConfig(accessToken, profileRequestParams));
         userAccessToken = accessToken;
-        location = sampledLocation;
+        location = sampledLocation || location;
         console.log('passing location to DB', location);
         let infoRequest = new GraphRequest(
             '/me',

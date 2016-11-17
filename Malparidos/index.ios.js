@@ -16,6 +16,7 @@ import { Alert, AppRegistry, Navigator, StyleSheet, Text, View } from 'react-nat
 // Scenes
 import LoginPage from './scenes/LoginPage';
 import SplashPage from './scenes/SplashPage';
+import PermissionsPage from './scenes/PermissionsPage';
 
 // Debug XHR patch
 const _XHR = GLOBAL.originalXMLHttpRequest ?
@@ -56,6 +57,13 @@ export default class Malparidos extends Component {
             );
         }
 
+        if (routeId === 'PermissionsPage') {
+            return (
+                <PermissionsPage
+                    navigator={navigator} />
+            );
+        }
+
         return this.noRoute(navigator);
 
     }
@@ -78,8 +86,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        //backgroundColor: '#F5FCFF',
+        alignItems: 'center'
     }
 });
 
