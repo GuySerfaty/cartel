@@ -4,17 +4,19 @@ let dateHelper = require('../helpers/date_helper');
 var graph = require('fbgraph');
 
 router.post('/login',(req, res) => {
-  graph.setAccessToken(req.body.fb_token);
-  graph.get('me', {fields: 'id, email, first_name, last_name, gender, birthday'}, function(err, fb_res) {
-    console.log('facebook calback', res)
-    fb_res.fb_id = fb_res.id;
-    fb_res.fb_token = req.body.fb_token;
-    delete(fb_res.id);
-    models.Users.upsert(fb_res).then( (data) => {
-      res.json({addedUserID:data})
-    })
-  });
+    graph.setAccessToken(req.body.fb_token);
+    graph.get('me', {fields: 'id, email, first_name, last_name, gender, birthday'}, function(err, loginParams) {
+        console.log('facebook calback', res);
+        loginParams.fb_id = loginParams.id;
+        loginParams.fb_token = req.body.fb_token;
+        loginParams.latitude = req.body.latitude;
+        loginParams.longitude = req.body.longitude;
+        delete(loginParams.id);
+        models.Users.upsert(loginParams).then( (data) => {
+            res.json({addedUserID:data})
+        })
+    });
 
-})
+});
 
 module.exports = router;

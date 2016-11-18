@@ -5,7 +5,7 @@
  * This is the DB wrapper service containing:
  * API calls
  *
- * @providesModule db
+ * @providesModule api-call
  * @flow
  */
 
@@ -14,7 +14,7 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import FBSDK, { AccessToken } from 'react-native-fbsdk';
-import API from 'environment';
+import env from 'environment';
 
 let newAccessToken;
 AccessToken.getCurrentAccessToken().then((accessToken)  => {newAccessToken = accessToken;});
@@ -41,23 +41,17 @@ const APIServerCall = (url, method, headers, body) => {
     );
 };
 
-const db = {
-    'createUser' : (params, accessToken) => {
+const api = {
+    'login' : (params, accessToken) => {
         console.log('creating user start', params, accessToken);
-        let url = API.createUser.url;
-        let method = API.createUser.method;
+        let url = env.login.url;
+        let method = env.login.method;
         let headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
         let body = JSON.stringify({
-            fb_id: params.id,
             fb_token: accessToken,
-            first_name: params.first_name ,
-            last_name: params.last_name,
-            email: params.email,
-            birthday : params.birthday,
-            gender : params.gender,
             latitude : params.latitude,
             longitude : params.longitude
         });
@@ -65,4 +59,4 @@ const db = {
     }
 };
 
-export default db;
+export default api;

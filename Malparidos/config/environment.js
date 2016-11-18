@@ -26,9 +26,9 @@ let envSettings = {
 
 let baseUrl = envSettings[envPlatform].BASE_URL;
 
-const API = {
-    'createUser' : {
-        url: baseUrl + '/users/create',
+const env = {
+    'login' : {
+        url: baseUrl + '/users/login',
         method: 'POST'
     },
     'getActiveDeals': {
@@ -45,4 +45,4 @@ const API = {
     }
 };
 
-export default API;
+export default env;
