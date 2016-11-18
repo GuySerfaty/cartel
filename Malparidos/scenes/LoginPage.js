@@ -123,10 +123,21 @@ export default class LoginPage extends Component {
     }
 
     goToNext() {
-        this.props.navigator.push({
-            id: 'PermissionsPage',
-            name: 'Permissions Page'
-        });
+
+        if (this.state.initialPosition === "unknown") {
+            this.props.navigator.push({
+                id: 'PermissionsPage',
+                name: 'Permissions Page'
+            });
+        }
+
+        else {
+            this.props.navigator.push({
+                id: 'ProfilePage',
+                name: 'Profile Page'
+            });
+        }
+
     }
 }
 

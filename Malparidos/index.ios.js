@@ -17,6 +17,7 @@ import { Alert, AppRegistry, Navigator, StyleSheet, Text, View } from 'react-nat
 import LoginPage from './scenes/LoginPage';
 import SplashPage from './scenes/SplashPage';
 import PermissionsPage from './scenes/PermissionsPage';
+import ProfilePage from './scenes/ProfilePage';
 
 // Debug XHR patch
 const _XHR = GLOBAL.originalXMLHttpRequest ?
@@ -60,6 +61,13 @@ export default class Malparidos extends Component {
         if (routeId === 'PermissionsPage') {
             return (
                 <PermissionsPage
+                    navigator={navigator} />
+            );
+        }
+
+        if (routeId === 'ProfilePage') {
+            return (
+                <ProfilePage
                     navigator={navigator} />
             );
         }
