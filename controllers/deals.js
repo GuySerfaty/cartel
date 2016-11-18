@@ -1,6 +1,6 @@
 let router = require('./index');
-let models = require('../models')
-let dateHelper = require('../helpers/date_helper')
+let models = require('../models');
+let dateHelper = require('../helpers/date_helper');
 
 router.get('/', (req, res) => {
   models.Deals.findAll({
