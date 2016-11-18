@@ -16,8 +16,8 @@ import { Alert, AppRegistry, Navigator, StyleSheet, Text, View } from 'react-nat
 import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
 import Permissions from 'react-native-permissions';
 
-import graph from 'graph';
-import db from 'db';
+//import graph from 'graph';
+import api from 'api-call';
 import BackgroundVideo from 'background-video';
 
 
@@ -89,18 +89,20 @@ export default class LoginPage extends Component {
                                         (data) => {
 
                                             console.log('login success:', data);
+
                                             let accessToken = data.accessToken.toString();
+                                            let loginParams = {
+                                                longitude : this.state.initialPosition.longitude,
+                                                latitude : this.state.initialPosition.latitude
+                                            };
 
-                                            graph.getUserInfo(accessToken, this.state.initialPosition, graph.graphResponseToDB).then(
-                                                (success, error) => {
-
+                                            api.login(loginParams, accessToken).then(
+                                                (success, error) =>{
                                                     if (error) {
-                                                        console.log('error in graph.getUserInfo :: ', error);
+                                                        console.log(error);
                                                     }
-
                                                     else {
-                                                        console.log('Login was successful.', success);
-                                                        this.goToNext();
+                                                        console.log('LOGGED IN: ', success);
                                                     }
                                                 }
                                             );

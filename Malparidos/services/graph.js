@@ -11,8 +11,7 @@
 'use strict';
 
 import FBSDK, {  AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
-import API from 'environment';
-import db from 'db';
+
 
 const _responseInfoCallback = (error, result) => {
     if (error) {
@@ -38,47 +37,8 @@ const profileRequestConfig = (accessToken, params) => {
     return config;
 };
 
-let userAccessToken;
-let location = {
-    latitude : 'unknown',
-    longitude : 'unknown'
-};
-let graphPromise;
-let graphPromiseHandler = {};
-
 const graph = {
-    'getUserInfo': (accessToken, sampledLocation, callback) => {
-        console.log('Requesting new data from Graph API', profileRequestConfig(accessToken, profileRequestParams));
-        userAccessToken = accessToken;
-        location = sampledLocation || location;
-        console.log('passing location to DB', location);
-        let infoRequest = new GraphRequest(
-            '/me',
-            profileRequestConfig(accessToken, profileRequestParams),
-            callback || _responseInfoCallback
-        );
-        graphPromise =  new Promise ( (resolve, reject) => {
-            graphPromiseHandler.resolve = resolve;
-            graphPromiseHandler.reject = reject;
-            new GraphRequestManager().addRequest(infoRequest).start();
-        } );
 
-        return graphPromise;
-
-    },
-    'graphResponseToDB' : (error, result) => {
-        if (error) {
-            console.log('Error fetching data: ' , error);
-            graphPromiseHandler.reject(error);
-        } else {
-            result.latitude = location.latitude;
-            result.longitude = location.longitude;
-            db.createUser(result, userAccessToken).then( (data) => {
-                console.log('passing graph response to db service', data);
-                graphPromiseHandler.resolve(data);
-            });
-        }
-    }
 };
 
 export default graph;
