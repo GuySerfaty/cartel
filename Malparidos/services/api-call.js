@@ -14,7 +14,6 @@
 // Libraries
 import React, { Component } from 'react';
 import { AppRegistry, AsyncStorage} from 'react-native';
-import FBSDK, { AccessToken } from 'react-native-fbsdk';
 
 // Services
 import env from 'environment';
@@ -25,7 +24,7 @@ const attachTokenToHeaders = async (headers) => {
         let sessionToken = await AsyncStorage.getItem('@MalparidosStore:sessionToken');
         if (sessionToken !== null){
             // We have data!
-            console.log(sessionToken);
+            console.log('Data pulled from storage: ', sessionToken);
             headers.sessionToken = sessionToken;
         }
     } catch (error) {
@@ -46,21 +45,24 @@ const APIServerCall = (url, method, headers, body) => {
     }
 
     attachTokenToHeaders(headers);
-    console.log('headers changed: ', headers);
 
     return fetch(
+
         url,
         {
             method: method,
             headers: headers,
             body: body
         }).then(
+
         (response, error) => {
+
             if (error) {
                 console.log(error);
                 let errorMessage = "Could not retrieve data from server";
                 return errorMessage;
             }
+
             else {
 
                 response.json().then(
