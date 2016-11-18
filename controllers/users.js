@@ -4,13 +4,13 @@ let models = require('../models');
 let dateHelper = require('../helpers/date_helper');
 let graph = require('fbgraph');
 let jwt = require('jsonwebtoken');
+var config = require('../config');
 
-createToken = (user) => {
-  return jwt.sign(_.omit(user, 'password'), "MUST_MOVE_OUT_TO_CONFIG_FILE", { expiresIn: 60*60*5 });
+createToken = (obj) => {
+  return jwt.sign(obj, config.session_secret, { expiresIn: 60*60*60*1000 });
 };
 
 router.post('/login',(req, res) => {
-
   graph.setAccessToken(req.body.fb_token);
   graph.get('me', {fields: 'id, email, first_name, last_name, gender, birthday'}, function(err, loginParams) {
       console.log('facebook calback', res);
@@ -20,10 +20,8 @@ router.post('/login',(req, res) => {
       loginParams.longitude = req.body.longitude;
       delete(loginParams.id);
       models.Users.upsert(loginParams).then( (data) => {
-          data.session_token = createToken(user);
-          console.log('show me session_token', data.session_token);
-          res.json({addedUserID:data})
-      })
+          res.json({addedUserID:data, sessionTokenUpdate:createToken({id:data.id})});
+      });
   });
 });
 

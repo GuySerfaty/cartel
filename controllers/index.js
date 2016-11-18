@@ -1,12 +1,25 @@
 let express = require('express')
-let jwt = require('express-jwt');
+let jwt = require('jsonwebtoken');
 let router = express.Router();
+var config = require('../config');
 
-router.use(function(req, res, next) {
-  next()
-});
-loginRequirement = () => {
-  console.log('login function run')
-  return jwt({ secret: config.secret });
+loginRequirement = (req, res, next) => {
+  token = req.headers['authentication'];
+  if(token){
+    jwt.verify(token, config.session_secret, function(err, decoded) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  }
+  else{
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
+    });
+  }
 };
 module.exports = {router: router, loginRequirement: loginRequirement};
