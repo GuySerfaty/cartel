@@ -13,8 +13,8 @@
 
 // Libraries
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
-import FBSDK, { AccessToken, AsyncStorage } from 'react-native-fbsdk';
+import { AppRegistry, AsyncStorage} from 'react-native';
+import FBSDK, { AccessToken } from 'react-native-fbsdk';
 
 // Services
 import env from 'environment';
@@ -46,6 +46,7 @@ const APIServerCall = (url, method, headers, body) => {
     }
 
     attachTokenToHeaders(headers);
+    console.log('headers changed: ', headers);
 
     return fetch(
         url,
@@ -61,9 +62,15 @@ const APIServerCall = (url, method, headers, body) => {
                 return errorMessage;
             }
             else {
-                if (response.sessionTokenUpdate) {
-                    _saveTokenToLocalDB(response.sessionTokenUpdate);
-                }
+
+                response.json().then(
+                    (responseContent, failure) => {
+                        console.log('got response:', responseContent);
+                        if (responseContent.sessionTokenUpdate) {
+                            _saveTokenToLocalDB(responseContent.sessionTokenUpdate);
+                        }
+                    });
+
                 console.log(response);
                 return response;
 
