@@ -3,7 +3,7 @@ let models = require('../models');
 let dateHelper = require('../helpers/date_helper');
 var graph = require('fbgraph');
 
-router.post('/create',(req, res) => {
+router.post('/login',(req, res) => {
   graph.setAccessToken(req.body.fb_token);
   graph.get('me', {fields: 'id, email, first_name, last_name, gender, birthday'}, function(err, fb_res) {
     console.log('facebook calback', res)
