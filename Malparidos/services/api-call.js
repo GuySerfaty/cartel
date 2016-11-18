@@ -11,15 +11,42 @@
 
 'use strict';
 
+// Libraries
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import FBSDK, { AccessToken } from 'react-native-fbsdk';
+import FBSDK, { AccessToken, AsyncStorage } from 'react-native-fbsdk';
+
+// Services
 import env from 'environment';
 
-let newAccessToken;
-AccessToken.getCurrentAccessToken().then((accessToken)  => {newAccessToken = accessToken;});
+const attachTokenToHeaders = async (headers) => {
+
+    try {
+        let sessionToken = await AsyncStorage.getItem('@MalparidosStore:sessionToken');
+        if (sessionToken !== null){
+            // We have data!
+            console.log(sessionToken);
+            headers.sessionToken = sessionToken;
+        }
+    } catch (error) {
+        // Error retrieving data
+        console.log('error retrieving data: ', error);
+    }
+
+};
 
 const APIServerCall = (url, method, headers, body) => {
+
+    let _saveTokenToLocalDB = async (token) => {
+        try {
+        await AsyncStorage.setItem('@MalparidosStore:sessionToken', token);
+        } catch (error) {
+            console.log('error saving new token to local database', error);
+        }
+    }
+
+    attachTokenToHeaders(headers);
+
     return fetch(
         url,
         {
@@ -34,11 +61,17 @@ const APIServerCall = (url, method, headers, body) => {
                 return errorMessage;
             }
             else {
+                if (response.sessionTokenUpdate) {
+                    _saveTokenToLocalDB(response.sessionTokenUpdate);
+                }
                 console.log(response);
                 return response;
+
             }
         }
     );
+
+
 };
 
 const api = {

@@ -11,13 +11,16 @@
 
 'use strict';
 
+// Libraries
 import React, { Component } from 'react';
 import { Alert, AppRegistry, Navigator, StyleSheet, Text, View } from 'react-native';
 import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
 import Permissions from 'react-native-permissions';
 
-//import graph from 'graph';
+// Services
 import api from 'api-call';
+
+// Components
 import BackgroundVideo from 'background-video';
 
 
@@ -102,7 +105,8 @@ export default class LoginPage extends Component {
                                                         console.log(error);
                                                     }
                                                     else {
-                                                        console.log('LOGGED IN: ', success);
+                                                        console.log('moving to permissions', this.state.initialPosition)
+                                                        this.goToNext();
                                                     }
                                                 }
                                             );
