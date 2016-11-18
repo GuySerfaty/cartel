@@ -10,34 +10,59 @@
 
 'use strict';
 
+// Libraries
 import React, { Component } from 'react';
-import { Alert, AppRegistry, Navigator, StyleSheet, Text, View } from 'react-native';
+import { Alert, AppRegistry, AppState, Navigator, StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native';
 import Permissions from 'react-native-permissions';
+import Button from 'apsl-react-native-button';
+
+// Services
+import colors from 'colors';
 
 
 export default class PermissionsPage extends Component {
 
-    //_requestGelocationPermission() {
-    //    Permissions.requestPermission('geolocation')
-    //        .then(response => {
-    //            //returns once the user has chosen to 'allow' or to 'not allow' access
-    //            //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-    //            this.setState({ geolocationPermission: response })
-    //        });
-    //}
-    //
-    //_alertForGeolocationPermission() {
-    //    Alert.alert(
-    //        'Can we access your geolocation?',
-    //        'We need this access to make the game awesome!',
-    //        [
-    //            {text: 'Nope', onPress: () => console.log('permission denied'), style: 'cancel'},
-    //            this.state.geolocationPermission == 'undetermined'?
-    //            {text: 'OK', onPress: this._requestGelocationPermission.bind(this)}
-    //                : {text: 'Settings', onPress: Permissions.openSettings}
-    //        ]
-    //    )
-    //}
+    state = {
+        locationPermission: 'unknown'
+    };
+
+    _requestLocationPermission() {
+        Permissions.requestPermission('location', 'always')
+            .then((response, error) => {
+                if (error) {
+                    console.log(error);
+                }
+                else {
+                    //returns once the user has chosen to 'allow' or to 'not allow' access
+                    //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+                    this.setState({ locationPermission: response });
+                    console.log('user current location status: ', response);
+                }
+
+            });
+    }
+
+    _alertForLocationPermission() {
+        Alert.alert(
+            'Can we access your location?',
+            'We promise to use it wisely!',
+            [
+                {text: 'Nope', onPress: () => console.log('permission denied'), style: 'cancel'},
+                this.state.locationPermission == 'undetermined'?
+                {text: 'OK', onPress: this._requestLocationPermission.bind(this)}
+                    : {text: 'Settings', onPress: Permissions.openSettings}
+            ]
+        )
+    }
+
+    componentDidMount() {
+        Permissions.getPermissionStatus('location')
+            .then(response => {
+                this.setState({ locationPermission: response });
+                console.log('state: ', this.state)
+            });
+    }
+
     //
     //watchID: ?number = null;
     //
@@ -64,6 +89,7 @@ export default class PermissionsPage extends Component {
     //    navigator.geolocation.clearWatch(this.watchID);
     //}
 
+
     render() {
         return (
             <Navigator
@@ -77,9 +103,26 @@ export default class PermissionsPage extends Component {
 
             <View style={styles.container}>
 
-                <Text style={styles.welcome}>
-                    PERMISSONS
+                <Image
+                    source={require('../assets/ic_permissions.png')}
+                />
+                <Text style = {styles.title}>
+                    Excuse us please
                 </Text>
+
+                <Text style = {styles.subtitle}>
+                    Malparidos works awesome {"\n"}
+                    with location permissions
+                </Text>
+
+
+                <Button
+                    style = {styles.button}
+                    textStyle = {styles.buttonText}
+                    onPress = {() => this._alertForLocationPermission()}>
+                    Grant permission
+                </Button>
+
 
             </View>
         );
@@ -93,20 +136,32 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    welcome: {
-        fontSize: 24,
-        textAlign: 'center',
-        margin: 10,
-        color: '#000000',
+    title : {
+        fontSize: 22,
         fontWeight: 'bold',
-        backgroundColor: 'transparent'
+        margin: 10,
+        textAlign: 'center',
+        color: colors.black
     },
-    backgroundVideo: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
+    subtitle : {
+        fontSize: 18,
+        fontWeight: 'normal',
+        color: colors.lightGrey,
+        textAlign: 'center',
+        lineHeight: 28
+    },
+    button : {
+        backgroundColor: colors.lightBlue,
+        marginTop: 20,
+        width: 250,
+        borderRadius: 0,
+        borderWidth: 0,
+        alignSelf: 'center'
+    },
+    buttonText : {
+        color: colors.white,
+        fontSize: 14,
+        fontWeight: 'normal'
     }
 });
 
