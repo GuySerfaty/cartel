@@ -10,6 +10,7 @@ createToken = (user) => {
 };
 
 router.post('/login',(req, res) => {
+
   graph.setAccessToken(req.body.fb_token);
   graph.get('me', {fields: 'id, email, first_name, last_name, gender, birthday'}, function(err, loginParams) {
       console.log('facebook calback', res);
@@ -19,6 +20,8 @@ router.post('/login',(req, res) => {
       loginParams.longitude = req.body.longitude;
       delete(loginParams.id);
       models.Users.upsert(loginParams).then( (data) => {
+          data.session_token = createToken(user);
+          console.log('show me session_token', data.session_token);
           res.json({addedUserID:data})
       })
   });
