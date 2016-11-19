@@ -1,5 +1,6 @@
 let router_config = require('./index');
 let router = router_config.router;
+let loginRequired = router_config.loginRequired;
 let models = require('../models');
 let dateHelper = require('../helpers/date_helper');
 let graph = require('fbgraph');
@@ -7,7 +8,7 @@ let jwt = require('jsonwebtoken');
 var config = require('../config');
 
 createToken = (obj) => {
-  return jwt.sign(obj, config.session_secret, { expiresIn: 60*60*60*1000 });
+  return jwt.sign(obj, config.session_secret);
 };
 
 router.post('/login',(req, res) => {
@@ -19,10 +20,24 @@ router.post('/login',(req, res) => {
       loginParams.latitude = req.body.latitude;
       loginParams.longitude = req.body.longitude;
       delete(loginParams.id);
-      models.Users.upsert(loginParams).then( (data) => {
-          res.json({addedUserID:data, sessionTokenUpdate:createToken({id:data.id})});
+
+      models.Users.findOrCreate({where:{fb_id:loginParams.fb_id}, defaults:loginParams}).spread(function (user, created) {
+          if (created) {
+              res.json({userParams:user, sessionTokenUpdate:createToken({id:user.id}), firstLogin:true});
+          } else {
+              return user.updateAttributes(loginParams).then( (updated) => {
+                  res.json({userParams:user, sessionTokenUpdate:createToken({id:user.id})});
+              });
+          }
       });
+
   });
+});
+
+router.post('/update',loginRequired ,(req, res) => {
+  models.Users.update(req.body, {where:{id:req.decoded.id}}).then( (user) => {
+    res.json({user:user});
+  })
 });
 
 module.exports = router;

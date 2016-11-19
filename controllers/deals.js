@@ -1,10 +1,10 @@
 let router_config = require('./index');
 let router = router_config.router;
-let loginRequirement = router_config.loginRequirement;
+let loginRequired = router_config.loginRequired;
 let models = require('../models');
 let dateHelper = require('../helpers/date_helper');
 
-router.get('/',loginRequirement, (req, res) => {
+router.get('/',loginRequired, (req, res) => {
   models.Deals.findAll({
     where: {
       state: 'active'

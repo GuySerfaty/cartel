@@ -3,7 +3,7 @@ let jwt = require('jsonwebtoken');
 let router = express.Router();
 var config = require('../config');
 
-loginRequirement = (req, res, next) => {
+loginRequired = (req, res, next) => {
   token = req.headers['authentication'];
   if(token){
     jwt.verify(token, config.session_secret, (err, decoded) => {
@@ -22,4 +22,4 @@ loginRequirement = (req, res, next) => {
     });
   }
 };
-module.exports = {router: router, loginRequirement: loginRequirement};
+module.exports = {router: router, loginRequired: loginRequired};
