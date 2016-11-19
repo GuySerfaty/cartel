@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PoobApp/routes-service.git"
+    "url": "git+https://github.com/GuySerfaty/cartel.git"
   },
-  "author": "Poob",
+  "author": "Cartel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PoobApp/routes-service/issues"
+    "url": "https://github.com/GuySerfaty/cartel.git/issues"
   },
-  "homepage": "https://github.com/PoobApp/routes-service#readme",
+  "homepage": "https://github.com/GuySerfaty/cartel.git#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "brucedown": "^1.1.1",

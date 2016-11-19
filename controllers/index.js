@@ -1,4 +1,4 @@
-let express = require('express')
+let express = require('express');
 let jwt = require('jsonwebtoken');
 let router = express.Router();
 var config = require('../config');
@@ -6,7 +6,7 @@ var config = require('../config');
 loginRequirement = (req, res, next) => {
   token = req.headers['authentication'];
   if(token){
-    jwt.verify(token, config.session_secret, function(err, decoded) {
+    jwt.verify(token, config.session_secret, (err, decoded) => {
       if (err) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {

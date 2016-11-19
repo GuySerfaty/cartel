@@ -1,5 +1,5 @@
 let Sequelize = require('sequelize');
-let db = require('../db/maindb')
+let db = require('../db/maindb');
 
 let Users = db.define('Users', {
   id: {

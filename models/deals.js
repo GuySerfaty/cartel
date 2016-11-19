@@ -1,5 +1,5 @@
 let Sequelize = require('sequelize');
-let db = require('../db/maindb')
+let db = require('../db/maindb');
 
 let Deals = db.define('Deals', {
   id: {
@@ -25,6 +25,6 @@ let Deals = db.define('Deals', {
   tableName: 'Deals',
   freezeTableName: true,
   underscored: true
-})
+});
 
 module.exports = Deals;
