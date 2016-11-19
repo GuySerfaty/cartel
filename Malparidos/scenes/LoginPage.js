@@ -127,7 +127,8 @@ export default class LoginPage extends Component {
         if (this.state.initialPosition === "unknown") {
             this.props.navigator.push({
                 id: 'PermissionsPage',
-                name: 'Permissions Page'
+                name: 'Permissions Page',
+                sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump
             });
         }
 

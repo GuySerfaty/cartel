@@ -34,15 +34,15 @@ const attachTokenToHeaders = async (headers) => {
 
 };
 
-const APIServerCall = (url, method, headers, body) => {
-
-    let _saveTokenToLocalDB = async (token) => {
-        try {
-        await AsyncStorage.setItem('@MalparidosStore:sessionToken', token);
-        } catch (error) {
-            console.log('error saving new token to local database', error);
-        }
+const saveTokenToLocalDB = async (token) => {
+    try {
+    await AsyncStorage.setItem('@MalparidosStore:sessionToken', token);
+    } catch (error) {
+        console.log('error saving new token to local database', error);
     }
+}
+
+const APIServerCall = (url, method, headers, body) => {
 
     attachTokenToHeaders(headers);
 
@@ -69,7 +69,7 @@ const APIServerCall = (url, method, headers, body) => {
                     (responseContent, failure) => {
                         console.log('got response:', responseContent);
                         if (responseContent.sessionTokenUpdate) {
-                            _saveTokenToLocalDB(responseContent.sessionTokenUpdate);
+                            saveTokenToLocalDB(responseContent.sessionTokenUpdate);
                         }
                     });
 
