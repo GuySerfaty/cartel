@@ -12,6 +12,8 @@
 // Libraries
 import React, { Component } from 'react';
 import { Alert, AppRegistry, Navigator, StyleSheet, Text, View } from 'react-native';
+import FBSDK, { AccessToken } from 'react-native-fbsdk';
+import { connect } from 'react-redux';
 
 // Scenes
 import LoginPage from './scenes/LoginPage';
@@ -38,7 +40,8 @@ export default class Malparidos extends Component {
                         return route.sceneConfig;
                     }
                     return Navigator.SceneConfigs.FloatFromRight;
-                }}   />
+                }}
+            />
         );
     }
 
@@ -46,6 +49,7 @@ export default class Malparidos extends Component {
         let routeId = route.id;
 
         if (routeId === 'SplashPage') {
+            console.log('navigator: ', navigator, 'route: ', route);
             return (
                 <SplashPage
                     navigator={navigator} />

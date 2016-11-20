@@ -4,14 +4,14 @@
  *
  * This is the login page background video component
  *
- * @providesModule background-video
+ * @providesModule MPBackgroundVideo
  * @flow
  */
 
 'use strict';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet} from 'react-native';
 import Video from 'react-native-video';
 
 export default class VideoIOS extends Component {

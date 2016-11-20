@@ -21,7 +21,7 @@ import Permissions from 'react-native-permissions';
 import api from 'api-call';
 
 // Components
-import BackgroundVideo from 'background-video';
+import MPBackgroundVideo from 'MPBackgroundVideo';
 
 
 export default class LoginPage extends Component {
@@ -34,7 +34,7 @@ export default class LoginPage extends Component {
 
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                var initialPosition = position.coords;
+                let initialPosition = position.coords;
                 this.setState({initialPosition});
                 console.log('Got user location: ', this.state, position);
             },
@@ -58,7 +58,7 @@ export default class LoginPage extends Component {
 
             <View style={styles.container}>
 
-                <BackgroundVideo />
+                <MPBackgroundVideo />
 
                 <Text style={styles.welcome}>
                     Welcome to Malparrrrridos!

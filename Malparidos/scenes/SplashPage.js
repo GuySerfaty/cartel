@@ -17,7 +17,8 @@ import { ActivityIndicator, AppRegistry, StyleSheet, Text, View } from 'react-na
 export default class SplashPage extends Component {
 
     componentWillMount() {
-        var navigator = this.props.navigator;
+        let navigator = this.props.navigator;
+        console.log('Splash page props:', this.props);
         setTimeout( () => {
             navigator.replace({
                 id: 'LoginPage'
